@@ -132,10 +132,8 @@ hist(steps.per.day.2)</code></pre>
 <ol style="list-style-type: decimal">
 <li>Add a variable for weekday or weekend</li>
 </ol>
-<pre class="r"><code>Sys.setlocale(&quot;LC_TIME&quot;,&quot;en_GB&quot;)
-for (i in 1:nrow(activity)) {
-  activity$weekpart[i] &lt;- if (weekdays(activity$date[i]) %in% c(&quot;Saturday&quot;,&quot;Sunday&quot;)) {&quot;weekend&quot;} else {&quot;weekday&quot;}
-}</code></pre>
+<pre class="r"><code>Sys.setlocale(&quot;LC_ALL&quot;,&quot;C&quot;)
+activity$weekpart &lt;- ifelse(weekdays(activity$date) %in% c(&quot;Saturday&quot;,&quot;Sunday&quot;),&quot;weekend&quot;,&quot;weekday&quot;)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Create a time series plot of the average number of steps taken versus the 5-minute interval split by weekday and weekend.</li>
 </ol>

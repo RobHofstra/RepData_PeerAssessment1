@@ -81,10 +81,8 @@ We see that the new values of mean and median differ from the previous ones. Thi
 1. Add a variable for weekday or weekend
 
 ```{r,cache=TRUE,results='hide'}
-Sys.setlocale("LC_TIME","en_GB")
-for (i in 1:nrow(activity)) {
-  activity$weekpart[i] <- if (weekdays(activity$date[i]) %in% c("Saturday","Sunday")) {"weekend"} else {"weekday"}
-}
+Sys.setlocale("LC_ALL","C")
+activity$weekpart <- ifelse(weekdays(activity$date) %in% c("Saturday","Sunday"),"weekend","weekday")
 ```
 
 2. Create a time series plot of the average number of steps taken versus the 5-minute interval split by weekday and weekend.
